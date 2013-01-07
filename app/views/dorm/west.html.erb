@@ -1,0 +1,33 @@
+<h1>West</h1>
+
+
+<div class="row">
+	<div class="span8">
+		<p class="lead">1st Floor</p>
+		<%= image_tag("atwood1.jpg")%>
+		<p class="lead">2nd Floor</p>
+	</div>
+	<div class="span4">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Room Number</th>
+					<th>Size</th>
+					<th># Interested groups</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% @rooms.each do |room| %>
+				<tr>
+					<td><%= link_to "#{room.code}", room %></td>
+					<td><%= room.size.capitalize%></td>
+					<td><%= room.group_count%></td>
+				</tr>
+			<%end%>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+

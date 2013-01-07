@@ -1,0 +1,23 @@
+<% if !@user.nil?%>
+	<h1><%= "Welcome #{@user.name}!"%></h1>
+	<legend>Here is a list of rooms you are presently interested in</legend>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Room Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @user.rooms.each do |room|%>
+				<tr>
+					<td><%=link_to "#{room.name} #{room.code}", room%></td>
+				</tr>
+			<%end%>
+		</tbody>
+	</table>	
+<% else %>
+	 <legend>A simple way to prospect and find your future dorm room.</legend>
+	 <%= button_to 'Sign in ', login_path, class: "btn btn-success" %>
+	 <p>OR</p>
+	 <%= button_to 'Sign up', new_user_path, :method => :get, class: "btn btn-primary"%>
+<%end%>

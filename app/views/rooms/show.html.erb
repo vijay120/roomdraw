@@ -1,0 +1,85 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @room.name %>
+</p>
+
+<p>
+  <b>Room Number:</b>
+  <%= @room.code %>
+</p>
+
+<p>
+  <b>Size:</b>
+  <%= @room.size %>
+</p>
+
+<p>
+	<b>Number of Groups:</b>
+	<%= @room.group_count%>
+</p>
+
+<legend>Prospecting Groups</legend>
+<table class="table">
+	<thead>
+			<tr>
+			<th>Group ID</th>	
+			<% i = 1%>
+			<% @capacity.times do %>
+				<th><%="Person #{i}" %></th>
+				<% i += 1%>
+			<%end%>	
+			</tr>
+	</thead>
+	<tbody>
+		<% j=1%>
+		<% @user_array.each do |grp| %>
+		<tr>
+		<% grp.each do |item|%>	
+				<td><%= item %></td>	
+		<%end%>
+		<%j+=1%>
+		</tr>
+		<%end%>
+			<% i = 0%>
+			<tr>
+				<td>____</td>
+			<% @capacity.times do %>
+				<td>____</td>
+				<% i += 1%>
+			<%end%>
+			</tr>
+	</tbody>
+</table>
+
+<legend>Comments</legend>
+<% @room.comments.each do |comment|%>
+	<p><%="#{comment.content} -- #{comment.name}"%></p>
+<%end%>
+
+<% if !@user.nil? %>
+	<% if @user_rooms%>
+		<p>
+			<%= button_to "Leave this room", request_room_path(@request_room), :method => :delete, class: "btn btn-inverse"%>
+		</p>
+	<%else%>
+		<%= form_tag(request_rooms_path(room_id: @room)) do %>
+	  		<legend>Join Room!</legend>
+	  		<%= label_tag(:q, "Select Group ID") %>
+	  		<%= select_tag(:group, options_for_select(@group_array)) %>
+	  		<%= button_tag("Join") %>
+			<% end %>
+		<%end%>
+		
+		<%= form_tag(comments_path(room_id: @room, name: @user.name), :method=>:create) do %>
+			<legend>Comment!</legend>
+		  <%= text_area_tag(:comment) %>
+		  <%= button_tag("Comment") %>
+	 	<%end%>
+<% else%>
+	<p>
+		<%= link_to "Please sign in to join this room", '/login'%>
+	</p>
+<%end%>
+
