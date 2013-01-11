@@ -6,7 +6,13 @@ gem 'rails', '3.1.10'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 gem 'bcrypt-ruby'
 
-gem 'sqlite3'
+group :development, :test do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
+end
 
 gem 'therubyracer' # Ruby
 gem "less-rails", "~> 2.2.6"
