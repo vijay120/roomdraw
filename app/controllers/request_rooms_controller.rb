@@ -51,7 +51,7 @@ class RequestRoomsController < ApplicationController
     @request_room.save
     respond_to do |format|
       if @request_room.save
-        format.html { redirect_to @request_room.room, notice: 'Request room was successfully created.' }
+        format.html { redirect_to @request_room.room}
         format.json { render json: @request_room, status: :created, location: @request_room }
       else
         format.html { render action: "new" }

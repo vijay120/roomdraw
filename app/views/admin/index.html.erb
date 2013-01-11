@@ -10,7 +10,7 @@
 		<tbody>
 			<% @user.rooms.each do |room|%>
 				<tr>
-					<td><%=link_to "#{room.name} #{room.code}", room%></td>
+					<td><%=link_to "#{room.name} #{room.code} #{room.alpha}", room%></td>
 				</tr>
 			<%end%>
 		</tbody>

@@ -41,11 +41,10 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-
-
     respond_to do |format|
+      UserMailer.registration_confirmation(@user).deliver
       if @user.save
-        format.html { redirect_to users_url, notice: "User #{@user.name} was successfully created." }
+        format.html { redirect_to admin_url, notice: "User #{@user.name} was successfully created." }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }

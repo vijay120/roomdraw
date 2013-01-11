@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106223157) do
+ActiveRecord::Schema.define(:version => 20130107193324) do
 
   create_table "comments", :force => true do |t|
     t.string   "name"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20130106223157) do
     t.string   "size"
     t.integer  "group_count"
     t.integer  "floor"
+    t.string   "alpha"
   end
 
   create_table "users", :force => true do |t|

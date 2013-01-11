@@ -1,34 +1,44 @@
 class DormController < ApplicationController
   def north
-    @rooms = Room.where("name = 'North'")
+    @first_floor = Room.where("name = 'North' AND floor = 1")
+    @second_floor = Room.where("name = 'North' AND floor = 2")
   end
 
   def south
-    @rooms = Room.where("name = 'South'")
+    @first_floor = Room.where("name = 'South' AND floor = 1")
+    @second_floor = Room.where("name = 'South' AND floor = 2")
   end
 
   def east
-    @rooms = Room.where("name = 'East'")
+    @first_floor = Room.where("name = 'East' AND floor = 1")
+    @second_floor = Room.where("name = 'East' AND floor = 2")  
   end
 
   def west
-    @rooms = Room.where("name = 'West'")
+    @first_floor = Room.where("name = 'West' AND floor = 1")
+    @second_floor = Room.where("name = 'West' AND floor = 2")
   end
 
   def atwood
-    @rooms = Room.where("name = 'Atwood'")
+    @first_floor = Room.where("name = 'Atwood' AND floor = 1")
+    @second_floor = Room.where("name = 'Atwood' AND floor = 2")
+    @third_floor = Room.where("name = 'Atwood' AND floor = 3")
   end
 
   def sontag
-    @rooms = Room.where("name = 'Sontag'")
+    @first_floor = Room.where("name = 'Sontag' AND floor = 1")
+    @second_floor = Room.where("name = 'Sontag' AND floor = 2") 
+    @third_floor =  Room.where("name = 'Sontag' AND floor = 3") 
   end
 
   def linde
-    @rooms = Room.where("name = 'Linde'")
+    @first_floor = Room.where("name = 'Linde' AND floor = 1")
+    @second_floor = Room.where("name = 'Linde' AND floor = 2")
   end
 
   def case
-    @rooms = Room.where("name = 'Case'")
+    @first_floor = Room.where("name = 'Case' AND floor = 1")
+    @second_floor = Room.where("name = 'Case' AND floor = 2")
   end
 
 end

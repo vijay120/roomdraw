@@ -11,21 +11,42 @@
 	<div class="navbar">
 	 <div class="navbar navbar-inverse">
 	  <div class="navbar-inner">
-			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </a>
-	    <a class="brand" href="/admin">Mudd Room Draw</a>	
+	    <a class="brand" href="/admin">Mudd Room Draw 2013</a>	
 	    <ul class="nav">
-	      <li class="active"><a href="/dorm/north">North</a></li>
-	      <li><a href="/dorm/south">South</a></li>
-		  <li><a href="/dorm/east">East</a></li>
-		  <li><a href="/dorm/west">West</a></li>
-		  <li><a href="/dorm/atwood">Atwood</a></li>
-		  <li><a href="/dorm/case">Case</a></li>
-		  <li><a href="/dorm/linde">Linde</a></li>
-		  <li><a href="/dorm/sontag">Sontag</a></li>
+	      <li class="<%= 'active' if current_page?(:controller => 'dorm', :action => 'north') %>">
+			<a href="/dorm/north">North</a>
+		  </li>
+		
+		
+	      <li class="<%= 'active' if current_page?(:controller => 'dorm', :action => 'south') %>">
+			<a href="/dorm/south">South</a>
+		  </li>
+		
+		
+		  <li class="<%= 'active' if current_page?(:controller => 'dorm', :action => 'east') %>">
+			<a href="/dorm/east">East</a>
+		  </li>
+		
+		  <li class="<%= 'active' if current_page?(:controller => 'dorm', :action => 'west') %>">
+			<a href="/dorm/west">West</a>
+		  </li>
+		
+		  <li class="<%= 'active' if current_page?(:controller => 'dorm', :action => 'atwood') %>">
+			<a href="/dorm/atwood">Atwood</a>
+		  </li>
+		
+		
+		  <li class="<%= 'active' if current_page?(:controller => 'dorm', :action => 'case') %>">
+			<a href="/dorm/case">Case</a>
+		  </li>
+		
+		  <li class="<%= 'active' if current_page?(:controller => 'dorm', :action => 'linde') %>">
+			<a href="/dorm/linde">Linde</a>
+		  </li>
+		
+		  <li class="<%= 'active' if current_page?(:controller => 'dorm', :action => 'sontag') %>">
+			<a href="/dorm/sontag">Sontag</a>
+		  </li>
 	    </ul>
 	  </div>
 	</div>
