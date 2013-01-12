@@ -41,9 +41,13 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
+    o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
+    secret_token  =  (0...15).map{ o[rand(o.length)] }.join
+    @user.password = secret_token
+    @user.password_confirmation = secret_token
     respond_to do |format|
-      UserMailer.registration_confirmation(@user).deliver
       if @user.save
+        UserMailer.registration_confirmation(@user, secret_token).deliver
         format.html { redirect_to admin_url, notice: "User #{@user.name} was successfully created." }
         format.json { render json: @user, status: :created, location: @user }
       else
