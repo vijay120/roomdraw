@@ -27,7 +27,6 @@
 	<%= button_to 'Logout', logout_path, method: :delete, class: "btn btn-danger"%>
 <% else %>
 	 <legend>A simple way to prospect and find your future dorm room.</legend>
-	 <div style="float: left; width: auto;"><%= bid.user.email %></div>  
 	 	<%= button_to 'Sign in ', login_path, class: "btn btn-success" %>
 	 	<p>OR</p>
 	 	<%= button_to 'Sign up', new_user_path, :method => :get, class: "btn btn-primary"%>
