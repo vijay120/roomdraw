@@ -10,5 +10,4 @@ class UserMailer < ActionMailer::Base
     mail(:to => mail, :subject => "Welcome to Muddraw 2013!")
   end
     
-  
 end
