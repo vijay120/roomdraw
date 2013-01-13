@@ -1,23 +1,34 @@
+<p id="notice"><%= notice %></p>
+
 <% if !@user.nil?%>
 	<h1><%= "Welcome #{@user.name}!"%></h1>
-	<legend>Here is a list of rooms you are presently interested in</legend>
+	<p class='lead'>Here is a list of rooms you are presently interested in:</p>
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Room Name</th>
+				<th># Groups </th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @user.rooms.each do |room|%>
 				<tr>
 					<td><%=link_to "#{room.name} #{room.code} #{room.alpha}", room%></td>
+					<td><%= room.group_count%></td>
 				</tr>
 			<%end%>
 		</tbody>
-	</table>	
+	</table>
+		    <% if @user.rooms.count == 0 %>
+			    <p>You are not interested in any rooms yet...</p>
+			<%end%>
+	<legend>Account details:</legend>
+    <%= button_to 'Edit Account Details', edit_user_path(session[:user_id]), method: :get, class: "btn btn-warning"%>
+	<%= button_to 'Logout', logout_path, method: :delete, class: "btn btn-danger"%>
 <% else %>
 	 <legend>A simple way to prospect and find your future dorm room.</legend>
-	 <%= button_to 'Sign in ', login_path, class: "btn btn-success" %>
-	 <p>OR</p>
-	 <%= button_to 'Sign up', new_user_path, :method => :get, class: "btn btn-primary"%>
+	 <div style="float: left; width: auto;"><%= bid.user.email %></div>  
+	 	<%= button_to 'Sign in ', login_path, class: "btn btn-success" %>
+	 	<p>OR</p>
+	 	<%= button_to 'Sign up', new_user_path, :method => :get, class: "btn btn-primary"%>
 <%end%>

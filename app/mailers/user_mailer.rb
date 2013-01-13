@@ -4,9 +4,10 @@ class UserMailer < ActionMailer::Base
   
   def registration_confirmation(user, secret_token)
     @user = user
-    @url = "http://0.0.0.0:3000/users/#{@user.id}/edit"
+    @url = "http://0.0.0.0:3000/admin"
     @secret_token = secret_token
-    mail(:to => user.email, :subject => "Welcome to Muddraw!")
+    mail = user.email + "@hmc.edu"
+    mail(:to => mail, :subject => "Welcome to Muddraw 2013!")
   end
     
   

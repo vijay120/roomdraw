@@ -53,9 +53,11 @@
 	</tbody>
 </table>
 
-<legend>Comments</legend>
-<% @room.comments.each do |comment|%>
-	<p><%="#{comment.content} -- #{comment.name}"%></p>
+<% if @user.nil? %>
+	<legend>Comments</legend>
+	<% @room.comments.each do |comment|%>
+		<p><%="#{comment.content} -- #{comment.name}"%></p>
+	<%end%>
 <%end%>
 
 <% if !@user.nil? %>
@@ -70,6 +72,14 @@
 	  		<%= select_tag(:group, options_for_select(@group_array)) %>
 	  		<%= button_tag("Join") %>
 			<% end %>
+		<%end%>
+
+		<legend>Comments</legend>
+			<%if @room.comments.count == 0 %>
+			 <p>No comments...</p>
+			<%end%>
+			<% @room.comments.each do |comment|%>
+			<p><%="#{comment.content} -- #{comment.name}"%></p>
 		<%end%>
 		
 		<%= form_tag(comments_path(room_id: @room, name: @user.name), :method=>:create) do %>

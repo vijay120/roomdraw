@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  skip_before_filter :authorize, only: [:new, :create]
+  skip_before_filter :correct_user, only: [:new, :create]
+  #skip_before_filter :authorize
+  #skip_before_filter :correct_user
+
   # GET /users
   # GET /users.json
   def index
@@ -64,7 +69,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to users_url, notice: "User #{@user.name} was successfully updated." }
+        format.html { redirect_to admin_url, notice: "Your account was successfully updated." }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

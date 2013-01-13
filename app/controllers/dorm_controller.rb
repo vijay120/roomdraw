@@ -1,4 +1,10 @@
 class DormController < ApplicationController
+
+  skip_before_filter :authorize
+  skip_before_filter :correct_user
+
+
+
   def north
     @first_floor = Room.where("name = 'North' AND floor = 1")
     @second_floor = Room.where("name = 'North' AND floor = 2")

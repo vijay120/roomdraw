@@ -1,5 +1,8 @@
 class RoomsController < ApplicationController
   skip_before_filter :authorize
+  skip_before_filter :correct_user
+
+
   # GET /rooms
   # GET /rooms.json
   def index
