@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-
+  before_filter :beta_authenticate
   before_filter :authorize
   before_filter :correct_user
   protect_from_forgery
@@ -27,6 +27,12 @@ class ApplicationController < ActionController::Base
     User.find_by_id(session[:user_id])
   rescue ActiveRecord::RecordNotFound
     redirect_to login_url, notice: 'Please login'
+  end
+
+  def beta_authenticate
+    authenticate_or_request_with_http_basic do |username, password|
+      username == "frank" && password = "annakendrickishot"
+    end
   end
     
   
