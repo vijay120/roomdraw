@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
 
   def beta_authenticate
     authenticate_or_request_with_http_basic do |username, password|
-      username == "frank" && password = "annakendrickishot"
+      username == "frank" && password == "turnips"
     end
   end
     

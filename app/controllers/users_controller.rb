@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_filter :authorize, only: [:new, :create, :index, :destroy]
   skip_before_filter :correct_user, only: [:new, :create, :index, :destroy]
+  skip_before_filter :beta_authenticate
   before_filter :authenticate, only: [:index]
   #skip_before_filter :authorize
   #skip_before_filter :correct_user
@@ -93,7 +94,7 @@ class UsersController < ApplicationController
 
   def authenticate
     authenticate_or_request_with_http_basic do |username, password|
-      username == "muddadmin" && password = "veeralakammal"
+      username == "muddadmin" && password == "hotcupcakes"
     end
   end
 
