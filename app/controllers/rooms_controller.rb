@@ -44,10 +44,10 @@ class RoomsController < ApplicationController
       i = 1
       @subquent_array.each do |group_id|        
         @groupid_array = Array.new
-        @groupid_array.push(group_id)
+        @groupid_array.push(group_id.to_s)
         RequestRoom.where(:room_id => @room, :group => group_id).each do |req|
           @temp_user = User.find(req.user_id)
-          @groupid_array.push("#{@temp_user.name} #{@temp_user.cohort} #{@temp_user.draw_number}")
+          @groupid_array.push(@temp_user)
         end 
         @user_array.push(@groupid_array)
         

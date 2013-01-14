@@ -3,13 +3,11 @@
   <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
+  <h1>Welcome to Muddraw, <%= @user.name %>!</h1>
   <body>
-    <h1>Welcome to Muddraw, <%= @user.name %>!</h1>
-    <p>
-      I hope you have an enjoyable experience through room draw 2013.<br/>
-    </p>
-    <p> Your current password is: <%=@secret_token%> </p>
+    <p> Your current password is: <strong><%=@secret_token%></strong> </p>
     <p> Please follow <%= @url %> to login and change your password. </p>
-    <p> Thanks for joining and have a great day!</p>
+    <p> Thanks for joining!</p>
+    <p> -- Vijay </p>
   </body>
 </html>

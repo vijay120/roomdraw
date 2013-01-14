@@ -12,7 +12,7 @@
 
 <p>
   <b>Size:</b>
-  <%= @room.size %>
+  <%= "#{@room.size}".capitalize! %>
 </p>
 
 <p>
@@ -21,7 +21,7 @@
 </p>
 
 <legend>Prospecting Groups</legend>
-<table class="table">
+<table class="table table-striped">
 	<thead>
 			<tr>
 			<th>Group ID</th>	
@@ -36,8 +36,17 @@
 		<% j=1%>
 		<% @user_array.each do |grp| %>
 		<tr>
-		<% grp.each do |item|%>	
+		<% grp.each do |item|%>
+			<% if item.instance_of?(User) %>
+				<td>
+					<table class="table table-bordered">
+						<tr><td><%= item.name%></td></tr>
+						<tr><td><font color="red"><%= "#{item.cohort} #{item.draw_number}"%></font></td></tr>
+					</table>
+				</td>
+		    <%else%>
 				<td><%= item %></td>	
+			<%end%>
 		<%end%>
 		<%j+=1%>
 		</tr>

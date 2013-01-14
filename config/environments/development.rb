@@ -22,7 +22,7 @@ Roomdraw::Application.configure do
     :domain => "baci.lindsaar.net",
     :authentication => "plain",
     :user_name => "vijay120@gmail.com",
-    :password => "xxxx",
+    :password => "swamiji1!!1",
     :enable_starttls_auto => true
   }
 

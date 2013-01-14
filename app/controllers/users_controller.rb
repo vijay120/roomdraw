@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  skip_before_filter :authorize, only: [:new, :create]
-  skip_before_filter :correct_user, only: [:new, :create]
+  skip_before_filter :authorize, only: [:new, :create, :index, :destroy]
+  skip_before_filter :correct_user, only: [:new, :create, :index, :destroy]
+  before_filter :authenticate, only: [:index]
   #skip_before_filter :authorize
   #skip_before_filter :correct_user
 
@@ -53,7 +54,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         UserMailer.registration_confirmation(@user, secret_token).deliver
-        format.html { redirect_to admin_url, notice: "User #{@user.name} was successfully created." }
+        format.html { redirect_to admin_url, notice: "Hello #{@user.name}! Log into your mudd email to receive your temporary password." }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
@@ -89,4 +90,11 @@ class UsersController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def authenticate
+    authenticate_or_request_with_http_basic do |username, password|
+      username == "muddadmin" && password = "annakendrickishot"
+    end
+  end
+
 end
