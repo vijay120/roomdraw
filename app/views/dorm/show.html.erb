@@ -1,0 +1,29 @@
+<h1><%= @dorm_name.capitalize%></h1>
+<div class="row">
+	<% for i in 1..@dorm_levels%>
+				<div class="span10">
+					<legend><%= "Floor #{i}" %></legend>
+					<%= image_tag("#{@dorm_name}#{i}.jpg")%>
+				</div>
+				<div class="span2">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Room</th>
+								<th>Size</th>
+								<th>Groups</th>
+							</tr>
+						</thead>
+					<tbody>
+					<% @dorm_level_rooms[i].each do |room| %>
+						<tr>
+							<td><%= link_to "#{room.code}", room %></td>
+							<td><%= room.size.capitalize%></td>
+							<td><%= room.group_count%></td>
+						</tr>
+					<%end%>
+				</tbody>
+			</table>
+		</div>
+	<%end%>
+</div>

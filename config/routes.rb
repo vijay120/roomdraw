@@ -4,6 +4,8 @@ Roomdraw::Application.routes.draw do
 
   resources :request_rooms
 
+  resources :dorm
+
   get "dorm/north"
 
   get "dorm/south"
