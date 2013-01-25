@@ -41,7 +41,7 @@
 				<td>
 					<table class="table table-bordered">
 						<tr><td><%= item.name%></td></tr>
-						<tr><td><font color="red"><%= "#{item.cohort} #{item.draw_number}"%></font></td></tr>
+						<tr><td><font color="red"><%= "#{item.cohort}" + " #{item.draw_number}".gsub(/.0/, " ")%></font></td></tr>
 					</table>
 				</td>
 		    <%else%>
