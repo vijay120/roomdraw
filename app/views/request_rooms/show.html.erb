@@ -10,6 +10,11 @@
   <%= @request_room.room_id %>
 </p>
 
+<p>
+	<b>Priority:</b>
+	<%= @request_room.priority %>
+</p>
+
 
 <%= link_to 'Edit', edit_request_room_path(@request_room) %> |
 <%= link_to 'Back', request_rooms_path %>

@@ -52,6 +52,7 @@ class RequestRoomsController < ApplicationController
       room.save
     end
     @request_room.group = params[:group]
+    @request_room.priority = params[:priority]
     @request_room.save
     respond_to do |format|
       if @request_room.save

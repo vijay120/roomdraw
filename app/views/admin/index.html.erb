@@ -1,5 +1,30 @@
 <p id="notice"><%= notice %></p>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+
+
+  $('tbody').find('tr').hover(
+
+  	function(){
+    	$(this).css("background-color","#cccccc");
+  	},
+  	function(){
+    	$(this).css("background-color","#FFFFFF");
+  	}).click(
+
+  		function(){
+  			var $link_child = $(this).find("td:first").find("a").attr("href");;
+  			window.location = $link_child;
+  		}
+
+  	);
+
+});
+</script>
+
 <% if !@user.nil?%>
 	<h1><%= "Welcome #{@user.name}!"%></h1>
 	<p class='lead'>Here is a list of rooms you are presently interested in:</p>
@@ -7,6 +32,7 @@
 		<thead>
 			<tr>
 				<th>Room Name</th>
+				<th>Your priority level</th>
 				<th># Interested Groups </th>
 			</tr>
 		</thead>
@@ -14,6 +40,9 @@
 			<% @user.rooms.each do |room|%>
 				<tr>
 					<td><%=link_to "#{room.name} #{room.code} #{room.alpha}", room%></td>
+					<% RequestRoom.where(:room_id => room, :user_id => @user).each do |i|%>
+						<td><%= i.priority %></td>
+					<%end%>
 					<td><%= room.group_count%></td>
 				</tr>
 			<%end%>

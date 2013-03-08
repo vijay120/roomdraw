@@ -43,15 +43,17 @@ class RoomsController < ApplicationController
       @subquent_array = @subquent_array.sort.uniq
       i = 1
       @subquent_array.each do |group_id|        
-        @groupid_array = Array.new
-        @groupid_array.push(group_id.to_s)
+        @group_array1 = Array.new
+        total_priority = 0
         RequestRoom.where(:room_id => @room, :group => group_id).each do |req|
           @temp_user = User.find(req.user_id)
-          @groupid_array.push(@temp_user)
+          @group_array1.push(@temp_user)
+          total_priority += req.priority
         end 
-        @user_array.push(@groupid_array)
+        @user_array << {:group_id => group_id.to_s, :group => @group_array1, :total_priority => total_priority}
+        @user_array = @user_array.sort_by{|e| e[:total_priority]}
         
-        if @groupid_array.count < @capacity+1
+        if @group_array1.count < @capacity+1
           @group_array.push [group_id.to_s(), group_id]
         end
         
@@ -72,6 +74,10 @@ class RoomsController < ApplicationController
   end
     if !@user.nil?
       @user_rooms = @user.rooms.exists?(@room)
+      @user_priority = [1,2,3,4,5]
+      RequestRoom.where(:user_id => @user).each do |j|
+        @user_priority.delete(j.priority)
+      end
       @request_room = RequestRoom.where(:user_id => @user, :room_id => @room).first
     end
 

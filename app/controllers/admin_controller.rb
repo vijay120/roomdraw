@@ -10,6 +10,7 @@ class AdminController < ApplicationController
     
     
     @total_users = User.count
+    
   end
 
 end

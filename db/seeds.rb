@@ -238,25 +238,25 @@ west_array = Array.new(west_array1)
 for w in 1..12
   code = 300+w
    if w > 8
-     Room.create(name: "South", code: code, floor: 1, size: 's', group_count:0)
+     Room.create(name: "South", code: code, floor: 1, size: 's', group_count:0, locked: false)
    else
-     Room.create(name: "South", code: code, floor: 1, size: 's', group_count:0, alpha:"A")
-     Room.create(name: "South", code: code, floor: 1, size: 's', group_count:0, alpha:"B")
-     Room.create(name: "South", code: code, floor: 1, size: 's', group_count:0, alpha:"C")
-     Room.create(name: "South", code: code, floor: 1, size: 's', group_count:0, alpha:"D")
+     Room.create(name: "South", code: code, floor: 1, size: 's', group_count:0, alpha:"A", locked: false)
+     Room.create(name: "South", code: code, floor: 1, size: 's', group_count:0, alpha:"B", locked: false)
+     Room.create(name: "South", code: code, floor: 1, size: 's', group_count:0, alpha:"C", locked: false)
+     Room.create(name: "South", code: code, floor: 1, size: 's', group_count:0, alpha:"D", locked: false)
    end
 end
 
 for z in 351..366
   if z == 359 or z == 361 or z == 363 or z==365
-    Room.create(name: "South", code: z, floor: 2, size: 'd', group_count:0)
+    Room.create(name: "South", code: z, floor: 2, size: 'd', group_count:0, locked: false)
   elsif z == 360 or z == 362 or z == 364 or z == 366
-    Room.create(name: "South", code: z, floor: 2, size: 's', group_count:0)
+    Room.create(name: "South", code: z, floor: 2, size: 's', group_count:0, locked: false)
   else
-    Room.create(name: "South", code: z, floor: 2, size: 's', group_count:0, alpha:"A")
-    Room.create(name: "South", code: z, floor: 2, size: 's', group_count:0, alpha:"B")
-    Room.create(name: "South", code: z, floor: 2, size: 's', group_count:0, alpha:"C")
-    Room.create(name: "South", code: z, floor: 2, size: 's', group_count:0, alpha:"D")
+    Room.create(name: "South", code: z, floor: 2, size: 's', group_count:0, alpha:"A", locked: false)
+    Room.create(name: "South", code: z, floor: 2, size: 's', group_count:0, alpha:"B", locked: false)
+    Room.create(name: "South", code: z, floor: 2, size: 's', group_count:0, alpha:"C", locked: false)
+    Room.create(name: "South", code: z, floor: 2, size: 's', group_count:0, alpha:"D", locked: false)
   end
 end
     
@@ -268,8 +268,8 @@ west_array.each do |size|
   code2 = 450+p
   if size == 'z'
   else
-    Room.create(name: "West", code: code1, floor: 1, size: size, group_count:0)
-    Room.create(name: "West", code: code2, floor: 2, size: size, group_count:0)
+    Room.create(name: "West", code: code1, floor: 1, size: size, group_count:0, locked: false)
+    Room.create(name: "West", code: code2, floor: 2, size: size, group_count:0, locked: false)
   end
   p+=1
 end
@@ -280,8 +280,8 @@ east_array.each do |size|
   code2 = 150+m
   if size == 'z'
   else
-    Room.create(name: "East", code: code1, floor: 1, size: size, group_count:0)
-    Room.create(name: "East", code: code2, floor: 2, size: size, group_count:0)
+    Room.create(name: "East", code: code1, floor: 1, size: size, group_count:0, locked: false)
+    Room.create(name: "East", code: code2, floor: 2, size: size, group_count:0, locked: false)
   end
   m+=1
 end
@@ -292,8 +292,8 @@ north_array.each do |size|
   code2 = 250+o
   if size == 'z'
   else
-    Room.create(name: "North", code: code1, floor: 1, size: size, group_count:0)
-    Room.create(name: "North", code: code2, floor: 2, size: size, group_count:0)
+    Room.create(name: "North", code: code1, floor: 1, size: size, group_count:0, locked: false)
+    Room.create(name: "North", code: code2, floor: 2, size: size, group_count:0, locked: false)
   end
   o+=1
 end
@@ -303,9 +303,9 @@ atwood_array.each do |size|
   code1 = 100+i
   code2 = 200+i
   code3 = 300+i
-  Room.create(name: "Atwood", code: code1, floor: 1, size: size, group_count:0)
-  Room.create(name: "Atwood", code: code2, floor: 2, size: size, group_count:0)
-  Room.create(name: "Atwood", code: code3, floor: 3, size: size, group_count:0)
+  Room.create(name: "Atwood", code: code1, floor: 1, size: size, group_count:0, locked: false)
+  Room.create(name: "Atwood", code: code2, floor: 2, size: size, group_count:0, locked: false)
+  Room.create(name: "Atwood", code: code3, floor: 3, size: size, group_count:0, locked: false)
   i+=1
 end
 
@@ -315,17 +315,17 @@ case_array.each do |size|
   code2 = 200+j
   if size == 'z'
   else
-    Room.create(name: "Case", code: code1, floor: 1, size: size, group_count:0)
-    Room.create(name: "Case", code: code2, floor: 2, size: size, group_count:0)
+    Room.create(name: "Case", code: code1, floor: 1, size: size, group_count:0, locked: false)
+    Room.create(name: "Case", code: code2, floor: 2, size: size, group_count:0, locked: false)
   end
   j+=1
 end
 
-Room.create(name: "Case", code: 12, floor: 1, size: 'q', group_count:0)
-Room.create(name: "Case", code: 14, floor: 1, size: 'q', group_count:0)
-Room.create(name: "Case", code: 22, floor: 2, size: 'q', group_count:0)
-Room.create(name: "Case", code: 23, floor: 2, size: 'q', group_count:0)
-Room.create(name: "Case", code: 24, floor: 2, size: 'q', group_count:0)
+Room.create(name: "Case", code: 12, floor: 1, size: 'q', group_count:0, locked: false)
+Room.create(name: "Case", code: 14, floor: 1, size: 'q', group_count:0, locked: false)
+Room.create(name: "Case", code: 22, floor: 2, size: 'q', group_count:0, locked: false)
+Room.create(name: "Case", code: 23, floor: 2, size: 'q', group_count:0, locked: false)
+Room.create(name: "Case", code: 24, floor: 2, size: 'q', group_count:0, locked: false)
 
 k=1
 linde_array.each do |size|
@@ -333,8 +333,8 @@ linde_array.each do |size|
   code2 = 200+j
   if size == 'z'
   else
-    Room.create(name: "Linde", code: code1, floor: 1, size: size, group_count:0)
-    Room.create(name: "Linde", code: code2, floor: 2, size: size, group_count:0)
+    Room.create(name: "Linde", code: code1, floor: 1, size: size, group_count:0, locked: false)
+    Room.create(name: "Linde", code: code2, floor: 2, size: size, group_count:0, locked: false)
   end
   k+=1
 end
@@ -342,15 +342,15 @@ end
 for l in 1..8
   code1 = 100+l
   code2 = 200+l
-  Room.create(name: "Sontag", code:code1, floor:1, size:'s', group_count:0, alpha:'A')
-  Room.create(name: "Sontag", code:code1, floor:1, size:'s', group_count:0, alpha:'B')
-  Room.create(name: "Sontag", code:code1, floor:1, size:'s', group_count:0, alpha:'C')
-  Room.create(name: "Sontag", code:code1, floor:1, size:'d', group_count:0, alpha:'D')
+  Room.create(name: "Sontag", code:code1, floor:1, size:'s', group_count:0, alpha:'A', locked: false)
+  Room.create(name: "Sontag", code:code1, floor:1, size:'s', group_count:0, alpha:'B', locked: false)
+  Room.create(name: "Sontag", code:code1, floor:1, size:'s', group_count:0, alpha:'C', locked: false)
+  Room.create(name: "Sontag", code:code1, floor:1, size:'d', group_count:0, alpha:'D', locked: false)
   
-  Room.create(name: "Sontag", code:code2, floor:2, size:'s', group_count:0, alpha:'A')
-  Room.create(name: "Sontag", code:code2, floor:2, size:'s', group_count:0, alpha:'B')
-  Room.create(name: "Sontag", code:code2, floor:2, size:'s', group_count:0, alpha:'C')
-  Room.create(name: "Sontag", code:code2, floor:2, size:'d', group_count:0, alpha:'D')
+  Room.create(name: "Sontag", code:code2, floor:2, size:'s', group_count:0, alpha:'A', locked: false)
+  Room.create(name: "Sontag", code:code2, floor:2, size:'s', group_count:0, alpha:'B', locked: false)
+  Room.create(name: "Sontag", code:code2, floor:2, size:'s', group_count:0, alpha:'C', locked: false)
+  Room.create(name: "Sontag", code:code2, floor:2, size:'d', group_count:0, alpha:'D', locked: false)
 end
 
 

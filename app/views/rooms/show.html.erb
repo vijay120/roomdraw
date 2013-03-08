@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<% if @room.locked %>
+	<legend>This room is locked!</legend>
+<% else %>
+
 <p>
   <b>Name:</b>
   <%= @room.name %>
@@ -25,6 +29,7 @@
 	<thead>
 			<tr>
 			<th>Group ID</th>	
+			<th>Total Priority</th>
 			<% i = 1%>
 			<% @capacity.times do %>
 				<th><%="Person #{i}" %></th>
@@ -35,19 +40,24 @@
 	<tbody>
 		<% j=1%>
 		<% @user_array.each do |grp| %>
-		<tr>
-		<% grp.each do |item|%>
-			<% if item.instance_of?(User) %>
-				<td>
-					<table class="table table-bordered">
-						<tr><td><%= item.name%></td></tr>
-						<tr><td><font color="red"><%= "#{item.cohort}" + " #{item.draw_number}".gsub(/.0/, " ")%></font></td></tr>
-					</table>
-				</td>
-		    <%else%>
-				<td><%= item %></td>	
+		<td>
+			<%= grp[:group_id] %>
+		</td>
+
+		<td>
+			<%= grp[:total_priority] %>
+		</td>
+
+			<% grp[:group].each do |item|%>
+			<td>
+				<table class="table table-bordered">
+					<tr><td><%= item.name%></td></tr>
+					<tr><td><font color="red"><%= "#{item.cohort}" + " #{item.draw_number}".gsub(/.0/, " ")%></font></td></tr>
+				</table>
+			</td>
 			<%end%>
-		<%end%>
+		</tr>
+
 		<%j+=1%>
 		</tr>
 		<%end%>
@@ -76,9 +86,11 @@
 		</p>
 	<%else%>
 		<%= form_tag(request_rooms_path(room_id: @room)) do %>
-	  		<legend>Join Room!</legend>
+	  		<legend>Join Room!</legend>s
 	  		<%= label_tag(:q, "Select Group ID") %>
 	  		<%= select_tag(:group, options_for_select(@group_array)) %>
+	  		<%= label_tag(:q, "Select your priority level") %>
+	  		<%= select_tag(:priority, options_for_select(@user_priority)) %>
 	  		<%= button_tag("Join") %>
 			<% end %>
 		<%end%>
@@ -95,10 +107,12 @@
 			<legend>Comment!</legend>
 		  <%= text_area_tag(:comment) %>
 		  <%= button_tag("Comment") %>
+		  	<p style="color:red;">Please be polite and courteous to your fellow mudders</p>
 	 	<%end%>
 <% else%>
 	<p>
 		<%= link_to "Please sign in to join this room", '/login'%>
 	</p>
+<%end%>
 <%end%>
 

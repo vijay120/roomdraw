@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130122171529) do
+ActiveRecord::Schema.define(:version => 20130308081601) do
 
   create_table "comments", :force => true do |t|
     t.string   "name"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20130122171529) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "group"
+    t.integer  "priority"
   end
 
   create_table "rooms", :force => true do |t|
@@ -38,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20130122171529) do
     t.integer  "group_count"
     t.integer  "floor"
     t.string   "alpha"
+    t.boolean  "locked"
   end
 
   create_table "users", :force => true do |t|
