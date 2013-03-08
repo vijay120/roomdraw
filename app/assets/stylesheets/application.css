@@ -5,3 +5,7 @@
  *= require_self
  *= require_tree . 
 */
+@import "bootstrap.css";
+@import "bootstrap-responsive.css";
+@import "bootstrap-responsive.min.css";
+@import "bootstrap.min.css";

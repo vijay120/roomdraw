@@ -6,6 +6,8 @@ gem 'rails', '3.1.10'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 gem 'bcrypt-ruby'
 gem 'thin'
+gem 'twitter-bootstrap-rails'
+
 
 group :development, :test do
   gem 'sqlite3'
@@ -24,7 +26,6 @@ group :assets do
   gem 'sass-rails',   '~> 3.1.4'
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
-  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 end
 
 gem 'jquery-rails'

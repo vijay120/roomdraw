@@ -47,12 +47,7 @@ ActiveRecord::Schema.define(:version => 20130122171529) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "cohort"
-    t.string   "activation_state"
-    t.string   "activation_token"
-    t.datetime "activation_token_expires_at"
     t.decimal  "draw_number"
   end
-
-  add_index "users", ["activation_token"], :name => "index_users_on_activation_token"
 
 end
