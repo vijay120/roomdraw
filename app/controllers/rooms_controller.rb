@@ -19,60 +19,52 @@ class RoomsController < ApplicationController
   def show
             
     begin
-      @room = Room.find(params[:id]) 
-      
-      if @room.size == 's'
-        @capacity = 1
-      elsif @room.size == 'd'
-        @capacity = 2
-      elsif @room.size == 't'
-        @capacity = 3
-      elsif @room.size == 'q'
-        @capatity = 4
-      end
+      @user = User.find(session[:user_id])
+    rescue ActiveRecord::RecordNotFound
+    @user = nil
+    end
 
+      @room = Room.find(params[:id]) 
+      room_to_size_conversion = {'s' => 1, 'd' => 2, 't' => 3, 'q' => 4}
+      @capacity = room_to_size_conversion[@room.size]
+      
       @group_array = Array.new
       @user_array = Array.new
       @subquent_array = Array.new
             
-     RequestRoom.where(:room_id => @room).each do |each_req|
+      @group_to_users = Hash.new
+      @group_to_priorities = Hash.new
+      RequestRoom.where(:room_id => @room).each do |each_req|
+        gid = each_req.group
+        #Add users with the same group id into same bucket of gid
+        if !@group_to_users.has_key?(gid)
+          @group_to_users[gid] = [User.find(each_req.user_id)]
+        else
+          @group_to_users[gid] << User.find(each_req.user_id)
+        end
+
+        if !@group_to_priorities.has_key?(gid)
+          @group_to_priorities[gid] = each_req.priority
+        else
+          @group_to_priorities[gid] += each_req.priority
+        end
+
         id = each_req.group
         @subquent_array.push(id)
       end
-        
-      @subquent_array = @subquent_array.sort.uniq
-      i = 1
-      @subquent_array.each do |group_id|        
-        @group_array1 = Array.new
-        total_priority = 0
-        RequestRoom.where(:room_id => @room, :group => group_id).each do |req|
-          @temp_user = User.find(req.user_id)
-          @group_array1.push(@temp_user)
-          total_priority += req.priority
-        end 
-        @user_array << {:group_id => group_id.to_s, :group => @group_array1, :total_priority => total_priority}
-        @user_array = @user_array.sort_by{|e| e[:total_priority]}
-        
-        if @group_array1.count < @capacity+1
-          @group_array.push [group_id.to_s(), group_id]
+
+      @keys_of_group_to_users = @group_to_users.keys
+      @potential_group_id = Array.new
+      potential_free_slot = Array(1..@keys_of_group_to_users.size+1)
+      @keys_of_group_to_users.each do |gid|
+        if @group_to_users[gid].size() < @capacity
+          @potential_group_id << [gid.to_s(), gid]
         end
-        
-        i+=1
+        potential_free_slot.delete(gid)
       end
-          
-       j = 1
-       loop do
-         break if !@subquent_array.include?(j)
-         j+=1
-       end
-          
-      @group_array.push ['Make new group', j]
+      @potential_group_id << ['Make new group', potential_free_slot[0]]
       
-      @user = User.find(session[:user_id])
-  rescue ActiveRecord::RecordNotFound
-    @user = nil
-  end
-    if !@user.nil?
+  if !@user.nil?
       @user_rooms = @user.rooms.exists?(@room)
       @user_priority = [1,2,3,4,5]
       RequestRoom.where(:user_id => @user).each do |j|

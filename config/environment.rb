@@ -5,3 +5,4 @@ require File.expand_path('../application', __FILE__)
 Roomdraw::Application.initialize!
 
 RAILS_ENV = 'production'
+Rails.logger = Logger.new(STDOUT)

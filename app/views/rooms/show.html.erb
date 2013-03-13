@@ -38,57 +38,51 @@
 			</tr>
 	</thead>
 	<tbody>
-		<% j=1%>
-		<% @user_array.each do |grp| %>
+
+		<%@keys_of_group_to_users.each do |key|%>
 		<td>
-			<%= grp[:group_id] %>
+			<%= key %>
+		</td>
+		<td>
+			<%= @group_to_priorities[key] %>
 		</td>
 
-		<td>
-			<%= grp[:total_priority] %>
-		</td>
-
-			<% grp[:group].each do |item|%>
+		<%@group_to_users[key].each do |user| %>
 			<td>
 				<table class="table table-bordered">
-					<tr><td><%= item.name%></td></tr>
-					<tr><td><font color="red"><%= "#{item.cohort}" + " #{item.draw_number}".gsub(/.0/, " ")%></font></td></tr>
+					<tr><td><%= user.name%></td></tr>
+					<tr><td><font color="red"><%= "#{user.cohort}" + " #{user.draw_number}".gsub(/.0/, " ")%></font></td></tr>
 				</table>
 			</td>
-			<%end%>
-		</tr>
-
-		<%j+=1%>
+		<%end%>
 		</tr>
 		<%end%>
-			<% i = 0%>
-			<tr>
-				<td>____</td>
-			<% @capacity.times do %>
-				<td>____</td>
-				<% i += 1%>
-			<%end%>
-			</tr>
+
 	</tbody>
 </table>
 
-<% if @user.nil? %>
-	<legend>Comments</legend>
+<legend>Comments</legend>
 	<% @room.comments.each do |comment|%>
 		<p><%="#{comment.content} -- #{comment.name}"%></p>
 	<%end%>
-<%end%>
 
-<% if !@user.nil? %>
+
+
+<% if @user.nil? %>
+	<p>
+		<%= link_to "Please sign in to join this room", '/login'%>
+	</p>
+
+<% else %>
 	<% if @user_rooms%>
 		<p>
 			<%= button_to "Leave this room", request_room_path(@request_room), :method => :delete, class: "btn btn-inverse"%>
 		</p>
 	<%else%>
 		<%= form_tag(request_rooms_path(room_id: @room)) do %>
-	  		<legend>Join Room!</legend>s
+	  		<legend>Join this Room!</legend>
 	  		<%= label_tag(:q, "Select Group ID") %>
-	  		<%= select_tag(:group, options_for_select(@group_array)) %>
+	  		<%= select_tag(:group, options_for_select(@potential_group_id)) %>
 	  		<%= label_tag(:q, "Select your priority level") %>
 	  		<%= select_tag(:priority, options_for_select(@user_priority)) %>
 	  		<%= button_tag("Join") %>
@@ -109,10 +103,6 @@
 		  <%= button_tag("Comment") %>
 		  	<p style="color:red;">Please be polite and courteous to your fellow mudders</p>
 	 	<%end%>
-<% else%>
-	<p>
-		<%= link_to "Please sign in to join this room", '/login'%>
-	</p>
-<%end%>
+	 <%end%>
 <%end%>
 
