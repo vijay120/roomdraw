@@ -17,9 +17,7 @@ $(document).ready(function(){
   			var $link_child = $(this).find("td:first").find("a").attr("href");;
   			window.location = $link_child;
   		}
-
   	);
-
 });
 </script>
 
@@ -42,7 +40,7 @@ $(document).ready(function(){
 					<tbody>
 					<% @dorm_level_rooms[i].each do |room| %>
 						<tr>
-							<td><%= link_to "#{room.code}", room %></td>
+							<td><%= link_to "#{room.code}#{room.alpha}", room %></td>
 							<td><%= room.size.capitalize%></td>
 							<td><%= room.group_count%></td>
 						</tr>

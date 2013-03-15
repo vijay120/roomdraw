@@ -329,8 +329,8 @@ Room.create(name: "Case", code: 24, floor: 2, size: 'q', group_count:0, locked: 
 
 k=1
 linde_array.each do |size|
-  code1 = 100+j
-  code2 = 200+j
+  code1 = 100+k
+  code2 = 200+k
   if size == 'z'
   else
     Room.create(name: "Linde", code: code1, floor: 1, size: size, group_count:0, locked: false)

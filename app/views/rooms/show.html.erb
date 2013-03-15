@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <% if @room.locked %>
-	<legend>This room is locked!</legend>
+	<legend>Ooops! This room is locked!</legend>
+	<p><%= "Reason for lock: #{@room.comment}"%></p>
 <% else %>
 
 <p>

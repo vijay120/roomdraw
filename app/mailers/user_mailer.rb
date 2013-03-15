@@ -4,7 +4,7 @@ class UserMailer < ActionMailer::Base
   
   def registration_confirmation(user, secret_token)
     @user = user
-    @url = "http://muddraw.herokuapp.com"
+    @url = "http://ashmc.hmc.edu/"
     @secret_token = secret_token
     mail = user.email + "@hmc.edu"
     mail(:to => mail, :subject => "Welcome to Muddraw 2013!")
