@@ -8,7 +8,6 @@ gem 'bcrypt-ruby'
 gem 'thin'
 gem 'twitter-bootstrap-rails'
 
-
 group :development, :test do
   gem 'sqlite3'
 end

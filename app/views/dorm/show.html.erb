@@ -26,11 +26,11 @@ $(document).ready(function(){
 <h1><%= @dorm_name.capitalize%></h1>
 <div class="row">
 	<% for i in 1..@dorm_levels%>
-				<div class="span10">
+				<div class="span11">
 					<legend><%= "Floor #{i}" %></legend>
-					<%= image_tag("#{@dorm_name}#{i}.jpg")%>
+					<%= image_tag("#{@dorm_name}#{i}.jpg", :size => "2000x2000")%>
 				</div>
-				<div class="span2">
+				<div class="span1">
 					<table class="table">
 						<thead>
 							<tr>
